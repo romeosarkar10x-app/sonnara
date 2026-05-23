@@ -1,5 +1,5 @@
 import z from "zod";
-import { CharacterSchema, CharacterSchemaWithVoice } from "./Character";
+import { CharacterSchema } from "./Character";
 import { SceneSchema } from "./Scene";
 import { DialogueSchema } from "./Dialogue";
 import { EpisodeSchema } from "./Episode";
@@ -39,10 +39,12 @@ export const AudioBookSchema = z
         music: z
             .array(BackgroundMusicSchema)
             .default([])
+            .optional()
             .describe("Background music layers. Should generally not overlap with each other."),
         soundEffects: z
             .array(SoundEffectSchema)
             .default([])
+            .optional()
             .describe("Sound effect layers. Can freely overlap with each other and with music."),
     })
     .superRefine((data, ctx) => {
@@ -193,10 +195,3 @@ export const AudioBookSchema = z
             }
         });
     });
-
-export const AudioBookWithCharacterVoicesSchema = AudioBookSchema.extend({
-    characters: z.array(CharacterSchemaWithVoice).describe("List of all characters appearing in the audiobook"),
-});
-
-export type AudioBook = z.infer<typeof AudioBookSchema>;
-export type AudioBookWithCharacterVoices = z.infer<typeof AudioBookWithCharacterVoicesSchema>;

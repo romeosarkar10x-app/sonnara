@@ -19,6 +19,7 @@ export const DialogueSchema = z
         emotions: z
             .array(EmotionSchema)
             .default([])
+            .optional()
             .describe(
                 "Emotion annotations for segments of this dialogue. Must be non-overlapping but need not be contiguous or exhaustive.",
             ),
@@ -27,6 +28,10 @@ export const DialogueSchema = z
         const wordCount = data.words.length;
 
         /* Validate emotion word indices are within bounds */
+        if (data.emotions === undefined) {
+            return;
+        }
+
         data.emotions.forEach((emotion, i) => {
             if (emotion.start >= wordCount) {
                 ctx.addIssue({
