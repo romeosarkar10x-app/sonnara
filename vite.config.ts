@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 import babel from "@rolldown/plugin-babel";
 import tailwindcss from "@tailwindcss/vite";
+import generateAudioBookJSONSchemaPlugin from "./plugins/generateAudioBookJSONSchema.ts";
 
 function getBaseURL(): string {
     const githubRepository = process.env.GITHUB_REPOSITORY;
@@ -17,7 +18,7 @@ function getBaseURL(): string {
 
 export default defineConfig({
     base: getBaseURL(),
-    plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss()],
+    plugins: [react(), babel({ presets: [reactCompilerPreset()] }), tailwindcss(), generateAudioBookJSONSchemaPlugin()],
 
     resolve: {
         alias: {
