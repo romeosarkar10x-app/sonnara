@@ -36,4 +36,4 @@ export const BackgroundMusicSchema = z
         }
     });
 
-export type BackgroundMusic = z.infer<typeof BackgroundMusicSchema>;
+export type BackgroundMusicType = z.infer<typeof BackgroundMusicSchema>;

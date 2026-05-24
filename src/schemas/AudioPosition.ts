@@ -20,4 +20,4 @@ export const AudioPositionSchema = z.object({
         ),
 });
 
-export type AudioPosition = z.infer<typeof AudioPositionSchema>;
+export type AudioPositionType = z.infer<typeof AudioPositionSchema>;

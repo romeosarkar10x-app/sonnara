@@ -21,4 +21,4 @@ export const EmotionSchema = z.object({
     end: z.number().int().min(0).describe("Ending word index (inclusive)"),
 });
 
-export type Emotion = z.infer<typeof EmotionSchema>;
+export type EmotionType = z.infer<typeof EmotionSchema>;

@@ -72,4 +72,4 @@ export const DialogueSchema = z
         }
     });
 
-export type Dialogue = z.infer<typeof DialogueSchema>;
+export type DialogueType = z.infer<typeof DialogueSchema>;

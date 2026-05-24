@@ -5,14 +5,14 @@ import { DialogueSchema } from "./Dialogue";
 import { EpisodeSchema } from "./Episode";
 import { BackgroundMusicSchema } from "./BackgroundMusic";
 import { SoundEffectSchema } from "./SoundEffect";
-import type { AudioPosition } from "./AudioPosition";
+import type { AudioPositionType } from "./AudioPosition";
 
 /**
  * Validates that an AudioPosition is within bounds of the dialogues array.
  * Returns an error message string if invalid, or null if valid.
  */
 function validateAudioPosition(
-    position: AudioPosition,
+    position: AudioPositionType,
     dialogues: z.infer<typeof DialogueSchema>[],
     label: string,
 ): string | null {
@@ -150,7 +150,7 @@ export const AudioBookSchema = z
         /* ──────────────────────────────────────────────
          * Validate music AudioPosition references
          * ────────────────────────────────────────────── */
-        data.music.forEach((track, i) => {
+        data.music?.forEach((track, i) => {
             const startErr = validateAudioPosition(track.start, data.dialogues, `Music at index ${i} 'start'`);
             if (startErr) {
                 ctx.addIssue({
@@ -175,7 +175,7 @@ export const AudioBookSchema = z
         /* ──────────────────────────────────────────────
          * Validate sound effect AudioPosition references
          * ────────────────────────────────────────────── */
-        data.soundEffects.forEach((sfx, i) => {
+        data.soundEffects?.forEach((sfx, i) => {
             const startErr = validateAudioPosition(sfx.start, data.dialogues, `Sound effect at index ${i} 'start'`);
             if (startErr) {
                 ctx.addIssue({
@@ -195,3 +195,5 @@ export const AudioBookSchema = z
             }
         });
     });
+
+export type AudioBookType = z.infer<typeof AudioBookSchema>;

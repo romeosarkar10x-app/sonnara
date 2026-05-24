@@ -13,3 +13,5 @@ export const CharacterSchema = z.object({
         .string()
         .describe("Description of the character's voice characteristics (tone, accent, pitch, speaking style, etc.)"),
 });
+
+export type CharacterType = z.infer<typeof CharacterSchema>;

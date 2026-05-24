@@ -9,4 +9,4 @@ export const SceneSchema = z.object({
     dialogueEnd: z.number().int().min(0).describe("Ending dialogue index for this scene (inclusive)"),
 });
 
-export type Scene = z.infer<typeof SceneSchema>;
+export type SceneType = z.infer<typeof SceneSchema>;

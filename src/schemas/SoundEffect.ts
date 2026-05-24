@@ -34,4 +34,4 @@ export const SoundEffectSchema = z
         }
     });
 
-export type SoundEffect = z.infer<typeof SoundEffectSchema>;
+export type SoundEffectType = z.infer<typeof SoundEffectSchema>;
