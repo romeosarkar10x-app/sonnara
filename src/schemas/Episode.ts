@@ -7,4 +7,4 @@ export const EpisodeSchema = z.object({
     sceneEnd: z.number().int().min(0).describe("Ending scene index for this episode (inclusive)"),
 });
 
-export type Episode = z.infer<typeof EpisodeSchema>;
+export type EpisodeType = z.infer<typeof EpisodeSchema>;
