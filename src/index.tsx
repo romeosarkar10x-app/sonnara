@@ -3,8 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.tsx";
 
-createRoot(document.getElementById("root")!).render(
+const rootElement = document.createElement("div");
+rootElement.id = "root";
+
+createRoot(rootElement).render(
     <StrictMode>
         <App />
     </StrictMode>,
 );
+
+document.body.appendChild(rootElement);
